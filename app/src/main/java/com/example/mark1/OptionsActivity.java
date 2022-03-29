@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 public class OptionsActivity extends AppCompatActivity
 {
@@ -22,6 +23,16 @@ public class OptionsActivity extends AppCompatActivity
         buttonEnterBuilding = findViewById(R.id.buttonEnterBuilding);
         buttonRegisterBuilding = findViewById(R.id.buttonRegisterBuilding);
         buttonLogin = findViewById(R.id.buttonLogin);
+
+        buttonRegisterBuilding.setOnClickListener(v ->
+        {
+
+        });
+
+        buttonEnterBuilding.setOnClickListener(v ->
+        {
+
+        });
 
         buttonLogin.setOnClickListener(v ->
         {
