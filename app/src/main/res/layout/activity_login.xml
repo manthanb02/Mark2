@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".OptionsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="60dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/buttonRegisterBuilding"/>
+            android:text="@string/buttonRegisterBuilding"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/buttonEnterBuilding"
@@ -32,7 +33,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="60dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/buttonEnterBuilding"/>
+            android:text="@string/buttonEnterBuilding"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/buttonLogin"
@@ -42,7 +44,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="60dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/buttonLogin"/>
+            android:text="@string/buttonLogin"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
