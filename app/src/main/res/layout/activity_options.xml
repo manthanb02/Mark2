@@ -15,18 +15,18 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/buttonRegisterBuilding"
+            android:id="@+id/buttonRegisterApartment"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="60dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/buttonRegisterBuilding"
+            android:text="@string/buttonRegisterApartment"
             android:textStyle="bold"/>
 
         <Button
-            android:id="@+id/buttonEnterBuilding"
+            android:id="@+id/buttonEnterApartment"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="60dp"

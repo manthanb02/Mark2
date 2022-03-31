@@ -9,8 +9,8 @@ import android.widget.CheckBox;
 
 public class OptionsActivity extends AppCompatActivity
 {
-    Button buttonRegisterBuilding; // button to register new building
-    Button buttonEnterBuilding;    // button to enter into building
+    Button buttonRegisterApartment; // button to register new building
+    Button buttonEnterApartment;    // button to enter into building
     Button buttonLogin;            // button to login
     Intent intent;                 // to change activity
 
@@ -20,18 +20,19 @@ public class OptionsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
-        buttonEnterBuilding = findViewById(R.id.buttonEnterBuilding);
-        buttonRegisterBuilding = findViewById(R.id.buttonRegisterBuilding);
+        buttonEnterApartment = findViewById(R.id.buttonEnterApartment);
+        buttonRegisterApartment = findViewById(R.id.buttonRegisterApartment);
         buttonLogin = findViewById(R.id.buttonLogin);
 
-        buttonRegisterBuilding.setOnClickListener(v ->
+        buttonRegisterApartment.setOnClickListener(v ->
         {
 
         });
 
-        buttonEnterBuilding.setOnClickListener(v ->
+        buttonEnterApartment.setOnClickListener(v ->
         {
-
+            intent = new Intent(OptionsActivity.this,JoinApartmentActivity.class);
+            startActivity(intent);
         });
 
         buttonLogin.setOnClickListener(v ->
