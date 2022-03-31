@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JoinApartmentActivity">
+    tools:context=".RegisterApartment">
 
         <LinearLayout
 
@@ -27,7 +27,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/editTextEnterName"
+                android:id="@+id/editTextRegisterName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -40,7 +40,7 @@
                 android:padding="15dp" />
 
             <EditText
-                android:id="@+id/editTextEnterEmail"
+                android:id="@+id/editTextRegisterEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -53,7 +53,7 @@
                 android:padding="15dp" />
 
             <EditText
-                android:id="@+id/editTextEnterPhoneNo"
+                android:id="@+id/editTextRegisterPhoneNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -66,7 +66,7 @@
                 android:padding="15dp" />
 
             <EditText
-                android:id="@+id/editTextEnterPassword"
+                android:id="@+id/editTextRegisterPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -79,7 +79,7 @@
                 android:padding="15dp" />
 
             <EditText
-                android:id="@+id/editTextEnterUpiId"
+                android:id="@+id/editTextRegisterUpiId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -105,29 +105,29 @@
             </TextView>
 
             <EditText
-                android:id="@+id/editTextEnterApartmentCode"
+                android:id="@+id/editTextRegisterApartmentName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/border"
-                android:hint="@string/enterApartmentCode"
+                android:hint="@string/registerApartmentName"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:padding="15dp" />
 
             <Button
-                android:id="@+id/buttonEnterJoin"
+                android:id="@+id/buttonRegisterNext"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="3"
-                android:text="@string/buttonJoin"
+                android:text="@string/next"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
+
 </ScrollView>

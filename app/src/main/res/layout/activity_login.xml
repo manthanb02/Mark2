@@ -14,7 +14,7 @@
         android:layout_centerInParent="true">
 
         <EditText
-            android:id="@+id/editTextPhoneNo"
+            android:id="@+id/editTextLoginPhoneNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enterPhoneNo"
@@ -28,7 +28,7 @@
             />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editTextLoginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enterPassword"
@@ -42,7 +42,7 @@
             />
 
         <CheckBox
-            android:id="@+id/checkBoxShowPassword"
+            android:id="@+id/checkBoxLoginShowPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -68,7 +68,7 @@
                 />
 
             <Button
-                android:id="@+id/buttonForgotPassword"
+                android:id="@+id/buttonLoginForgotPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/forgotPassword"

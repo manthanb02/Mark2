@@ -33,7 +33,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="60dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/buttonEnterBuilding"
+            android:text="@string/buttonJoinApartment"
             android:textStyle="bold"/>
 
         <Button

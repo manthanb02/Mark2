@@ -24,17 +24,23 @@ public class OptionsActivity extends AppCompatActivity
         buttonRegisterApartment = findViewById(R.id.buttonRegisterApartment);
         buttonLogin = findViewById(R.id.buttonLogin);
 
+        // this button shows register new apartment form
         buttonRegisterApartment.setOnClickListener(v ->
         {
-
+            intent = new Intent(OptionsActivity.this,RegisterApartment.class);
+            startActivity(intent);
         });
 
+
+        // this button shows join apartment form
         buttonEnterApartment.setOnClickListener(v ->
         {
             intent = new Intent(OptionsActivity.this,JoinApartmentActivity.class);
             startActivity(intent);
         });
 
+
+        // this button shows login from
         buttonLogin.setOnClickListener(v ->
         {
             intent = new Intent(OptionsActivity.this,LoginActivity.class);

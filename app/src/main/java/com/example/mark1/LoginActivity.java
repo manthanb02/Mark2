@@ -24,13 +24,17 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        checkBoxShowPassword = findViewById(R.id.checkBoxShowPassword);
-        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPhoneNo = findViewById(R.id.editTextLoginPhoneNo);
+        checkBoxShowPassword = findViewById(R.id.checkBoxLoginShowPassword);
+        editTextPassword = findViewById(R.id.editTextLoginPassword);
+        buttonLogin = findViewById(R.id.buttonLogin);
+        buttonForgotPassword = findViewById(R.id.buttonLoginForgotPassword);
 
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null)
         {
             actionBar.setTitle("Login");
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         // To show and hide the password

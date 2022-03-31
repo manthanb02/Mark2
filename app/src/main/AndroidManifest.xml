@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mark1">
         <activity
+            android:name=".RegisterApartment"
+            android:exported="false" />
+        <activity
             android:name=".JoinApartmentActivity"
             android:exported="false" />
         <activity

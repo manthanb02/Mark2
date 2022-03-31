@@ -10,12 +10,12 @@ import android.widget.Toast;
 
 public class JoinApartmentActivity extends AppCompatActivity {
 
-    EditText editTextEnterName;
-    EditText editTextEnterEmail;
-    EditText editTextEnterPhoneNo;
-    EditText editTextEnterPassword;
-    EditText editTextEnterUpiId;
-    EditText editTextEnterApartmentCode;
+    EditText name;
+    EditText email;
+    EditText phoneNo;
+    EditText password;
+    EditText upiId;
+    EditText apartmentCode;
     Button buttonEnterJoin;
 
     @Override
@@ -25,18 +25,26 @@ public class JoinApartmentActivity extends AppCompatActivity {
 
 
 //----------------------- add findViewById() for all components------------------------------------------
+        name = findViewById(R.id.editTextEnterName);
+        email = findViewById(R.id.editTextEnterEmail);
+        phoneNo = findViewById(R.id.editTextEnterPhoneNo);
+        password = findViewById(R.id.editTextEnterPassword);
+        upiId = findViewById(R.id.editTextEnterUpiId);
+        apartmentCode = findViewById(R.id.editTextEnterApartmentCode);
         buttonEnterJoin = findViewById(R.id.buttonEnterJoin);
 
         //sets title to actionbar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setTitle("Join Apartment");
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         // button to join the apartment
         buttonEnterJoin.setOnClickListener(v ->
         {
             Toast.makeText(this, "joining to apartment...", Toast.LENGTH_SHORT).show();
+            // here code for api post request will be written
         });
     }
 }
