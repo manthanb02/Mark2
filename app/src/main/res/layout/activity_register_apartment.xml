@@ -40,19 +40,6 @@
                 android:padding="15dp" />
 
             <EditText
-                android:id="@+id/editTextRegisterEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/border"
-                android:hint="@string/enterEmail"
-                android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
-                android:padding="15dp" />
-
-            <EditText
                 android:id="@+id/editTextRegisterPhoneNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,6 +53,21 @@
                 android:padding="15dp" />
 
             <EditText
+                android:id="@+id/editTextRegisterEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/border"
+                android:hint="@string/enterEmail"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:padding="15dp" />
+
+
+
+            <EditText
                 android:id="@+id/editTextRegisterPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,19 +78,6 @@
                 android:hint="@string/createPassword"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:padding="15dp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterUpiId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/border"
-                android:hint="@string/enterUpiId"
-                android:importantForAutofill="no"
-                android:inputType="text"
                 android:padding="15dp" />
 
             <TextView

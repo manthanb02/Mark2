@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 class SplashThread extends Thread // thread to display splash screen
 {
     SplashActivity activity;    // object reference of splash activity
     Intent intent;              // intent to pass from splash to login activity or home activity
-    boolean isLoggedIn;         // user logged in or not
+    boolean isLoggedIn;        // user logged in or not
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     SplashThread(SplashActivity activity, boolean isLoggedIn) // constructor for thread
     {
@@ -24,7 +28,10 @@ class SplashThread extends Thread // thread to display splash screen
         {
             Thread.sleep(3000); // splash screen will appear for 3 seconds
 
-            if(isLoggedIn) // if user is already logged in, will be directed to home activity directly, else user has to log in
+            FirebaseUser user = auth.getCurrentUser(); // to get the current user of app
+
+
+            if(user != null) // if user is already logged in, will be directed to home activity directly, else user has to log in
                 intent = new Intent(activity, HomeActivity.class);
             else
                 intent = new Intent(activity, OptionsActivity.class);

@@ -14,15 +14,15 @@
         android:layout_centerInParent="true">
 
         <EditText
-            android:id="@+id/editTextLoginPhoneNo"
+            android:id="@+id/editTextLoginEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enterPhoneNo"
+            android:hint="@string/enterEmail"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:padding="15dp"
-            android:inputType="phone"
+            android:inputType="textEmailAddress"
             android:background="@drawable/border"
             android:importantForAutofill="no"
             />
