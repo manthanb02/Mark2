@@ -101,7 +101,7 @@
                 android:background="@drawable/border"
                 android:hint="@string/enterApartmentCode"
                 android:importantForAutofill="no"
-                android:inputType="number"
+                android:inputType="text"
                 android:padding="15dp" />
 
             <Button

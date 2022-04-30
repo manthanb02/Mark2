@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -25,6 +26,7 @@ import java.util.HashMap;
 
 public class RegisterApartment extends AppCompatActivity
 {
+    // UI components
     EditText name;
     EditText phoneNo;
     EditText email;
@@ -33,10 +35,13 @@ public class RegisterApartment extends AppCompatActivity
     EditText apartmentName;
     Button next;
 
-    Integer aptCode;
-    Integer value; // variable to store fetched currentAptCode
+    // stores unique apartment code
+    String aptCode;
 
+    // Firebase related fields
     FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference reference = database.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,6 +49,7 @@ public class RegisterApartment extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_apartment);
 
+        // Finding UI components of
         name = findViewById(R.id.editTextRegisterName);
         phoneNo = findViewById(R.id.editTextRegisterPhoneNo);
         email = findViewById(R.id.editTextRegisterEmail);
@@ -52,6 +58,7 @@ public class RegisterApartment extends AppCompatActivity
         apartmentName = findViewById(R.id.editTextRegisterApartmentName);
 
 
+        // object for action-bar
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null)
         {
@@ -60,21 +67,23 @@ public class RegisterApartment extends AppCompatActivity
         }
 
         // A condition should be added to check whether all data fields are filled or not.
-
         next.setOnClickListener(v ->
         {
+            // collecting data from UI components and storing into variables
             String userName = name.getText().toString();
             String userPhoneNo = phoneNo.getText().toString();
             String userEmail = email.getText().toString();
             String userPassword = password.getText().toString();
             String userApartmentName = apartmentName.getText().toString();
 
+            // testcase
             if(userName.equals("") || userPhoneNo.equals("") || userEmail.equals("") || userPassword.equals("") || userApartmentName.equals(""))
             {
                 Toast.makeText(RegisterApartment.this,"Enter All Input Fields",Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // testcase
             if(!userEmail.contains("@gmail.com"))
             {
                 Toast.makeText(RegisterApartment.this,"Enter valid gmail account",Toast.LENGTH_SHORT).show();
@@ -82,37 +91,35 @@ public class RegisterApartment extends AppCompatActivity
                 return;
             }
 
+            // testcase
             if(password.length() < 8)
             {
                 Toast.makeText(RegisterApartment.this,"Password should be atleast 8 characters long ",Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // method for registering user
             registerAdmin(userName,userPhoneNo,userEmail,userPassword,userApartmentName);
+
         });
 
 
     }
 
+    // method for registering the user
     void registerAdmin(String name, String phoneNo, String email, String password,String apartmentName)
     {
-        getCurrentAptCode();
-
-//        if(value == -1) // this code stats that it was unable to fetch the currentAptCode from database
-//        {
-//            Toast.makeText(this, "Apartment Code Error code  :" + aptCode, Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-
         auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+                {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
                         if (task.isSuccessful())
                         {
-                            aptCode = value;
-                            aptCode++;
+                            // push() is used so that unique code can be generated for every apartment registered
+                            aptCode = reference.push().getKey(); // very imp
+
                             Toast.makeText(RegisterApartment.this, "Apartment code : " + aptCode, Toast.LENGTH_SHORT).show();
 
                             HashMap<String,Object> user = new HashMap<>();
@@ -126,48 +133,26 @@ public class RegisterApartment extends AppCompatActivity
                             apartment.put("balance",0);
                             apartment.put("maintenance",0);
 
-                            FirebaseDatabase.getInstance().getReference().child("users").child(email.substring(0,email.length() - 4)).setValue(user);
-                            FirebaseDatabase.getInstance().getReference().child("apartments").child(String.valueOf(aptCode)).setValue(apartment);
-                            FirebaseDatabase.getInstance().getReference().child("code").setValue(aptCode);
+                            // code for adding new user in real-time database
+                            reference.child("users").child(email.substring(0,email.length() - 4)).setValue(user);
+                            reference.child("apartments").child(aptCode).setValue(apartment);
 
-                            Toast.makeText(RegisterApartment.this,"Data Saved Successfully",Toast.LENGTH_SHORT).show();
 
-                            //changes screen from RegisterApartment to HomeActivity
-                            Intent intent = new Intent(RegisterApartment.this,HomeActivity.class);
+                            Toast.makeText(RegisterApartment.this,"Data Saved Successfully and ",Toast.LENGTH_SHORT).show();
+
+                            // this will take user to login screen
+                            Intent intent = new Intent(RegisterApartment.this,LoginActivity.class);
+                            intent.putExtra("email",email);
+                            intent.putExtra("password",password);
                             startActivity(intent);
                             finish();
-
                         }
                         else
                         {
+                            // toast for unsuccessful registration
                             Toast.makeText(RegisterApartment.this, "Registration unsuccessful", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-    }
-
-    void getCurrentAptCode()
-    {
-        this.value = -1;
-        FirebaseDatabase.getInstance().getReference().child("code").addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                if(snapshot.exists())
-                {
-                    String code = String.valueOf(snapshot.getValue(Integer.class));
-                    value = Integer.parseInt(code);
-                    Log.d("message","Code : " + value);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-                value = -1;
-            }
-
-        });
     }
 }

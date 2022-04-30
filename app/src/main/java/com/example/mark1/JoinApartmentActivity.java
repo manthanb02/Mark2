@@ -16,6 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -23,16 +24,18 @@ import java.util.HashMap;
 
 public class JoinApartmentActivity extends AppCompatActivity
 {
+    EditText name;          // edittext for name
+    EditText email;         // edittext for email
+    EditText phoneNo;       // edittext for phone no
+    EditText password;      // edittext for password
+    EditText apartmentCode; // edittext for apartment code
+    Button buttonEnterJoin; // button to join a apartment
 
-    EditText name;
-    EditText email;
-    EditText phoneNo;
-    EditText password;
-    EditText upiId;
-    EditText apartmentCode;
-    Button buttonEnterJoin;
+    FirebaseAuth auth = FirebaseAuth.getInstance(); // Firebase auth object for authentication purpose
 
-    FirebaseAuth auth = FirebaseAuth.getInstance();
+    // Fields related to real-time database of firebase
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference reference = database.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,8 +43,7 @@ public class JoinApartmentActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_apartment);
 
-
-//----------------------- add findViewById() for all components------------------------------------------
+        // Finding id's of all UI Components
         name = findViewById(R.id.editTextEnterName);
         email = findViewById(R.id.editTextEnterEmail);
         phoneNo = findViewById(R.id.editTextEnterPhoneNo);
@@ -49,28 +51,31 @@ public class JoinApartmentActivity extends AppCompatActivity
         apartmentCode = findViewById(R.id.editTextEnterApartmentCode);
         buttonEnterJoin = findViewById(R.id.buttonEnterJoin);
 
-        //sets title to actionbar
+        // Sets title to actionbar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setTitle("Join Apartment");
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        // button to join the apartment
+        // Button to join the apartment
         buttonEnterJoin.setOnClickListener(v ->
         {
+            // Collecting data from all UI fields in variables
             String userName = name.getText().toString();
             String userPhoneNo = phoneNo.getText().toString();
             String userEmail = email.getText().toString();
             String userPassword = password.getText().toString();
             String userApartmentCode = apartmentCode.getText().toString();
 
+            // testcase
             if(userName.equals("") || userPhoneNo.equals("") || userEmail.equals("") || userPassword.equals("") || userApartmentCode.equals(""))
             {
                 Toast.makeText(JoinApartmentActivity.this,"Enter All Input Fields",Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // testcase
             if(!userEmail.contains("@gmail.com"))
             {
                 Toast.makeText(JoinApartmentActivity.this,"Enter valid gmail account",Toast.LENGTH_SHORT).show();
@@ -78,23 +83,23 @@ public class JoinApartmentActivity extends AppCompatActivity
                 return;
             }
 
+            // testcase
             if(password.length() < 8)
             {
                 Toast.makeText(JoinApartmentActivity.this,"Password should be atleast 8 characters long ",Toast.LENGTH_SHORT).show();
                 return;
             }
 
-
-            FirebaseDatabase.getInstance().getReference().child("apartments").child(userApartmentCode).addValueEventListener(new ValueEventListener()
+            // code to check weather apartment code added by the user is valid or not
+            reference.child("apartments").child(userApartmentCode).addValueEventListener(new ValueEventListener()
             {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot)
                 {
                     if(snapshot.exists())
                     {
-                        // As apt code is valid user will be added to to particular apartment
-                        int aptCode = Integer.parseInt(userApartmentCode);
-                        joinApartment(userName,userPhoneNo,userEmail,userPassword,aptCode);
+                        // As apartment code is valid user will be added to to particular apartment
+                        joinApartment(userName,userPhoneNo,userEmail,userPassword,userApartmentCode);
                     }
                     else
                     {
@@ -112,10 +117,12 @@ public class JoinApartmentActivity extends AppCompatActivity
         });
     }
 
-    public void joinApartment(String name, String phoneNo, String email,String password, int aptCode)
+    // This method will be invoked when user clicks on join apartment button
+    public void joinApartment(String name, String phoneNo, String email,String password, String aptCode)
     {
         auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+                {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
@@ -130,14 +137,15 @@ public class JoinApartmentActivity extends AppCompatActivity
                             user.put("status","member");
 
 
-                            FirebaseDatabase.getInstance().getReference().child("users").child(email.substring(0,email.length() - 4)).setValue(user);
+                            reference.child("users").child(email.substring(0,email.length() - 4)).setValue(user);
                             Toast.makeText(JoinApartmentActivity.this,"Data Saved Successfully",Toast.LENGTH_SHORT).show();
 
-                            // changes Activity screen from JoinApartment to HomeActivity
-                            Intent intent = new Intent(JoinApartmentActivity.this,HomeActivity.class);
+                            // After the data is registered user will be directed to login page
+                            Intent intent = new Intent(JoinApartmentActivity.this,LoginActivity.class);
+                            intent.putExtra("email",email);
+                            intent.putExtra("password",password);
                             startActivity(intent);
                             finish();
-
                         }
                         else
                         {

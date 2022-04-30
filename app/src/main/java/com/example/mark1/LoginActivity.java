@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,12 +25,13 @@ public class LoginActivity extends AppCompatActivity
 {
 
     CheckBox checkBoxShowPassword; // checkbox to show password
-    EditText editTextEmail;
-    EditText editTextPassword;
-    Button buttonLogin;
-    Button buttonForgotPassword;
+    EditText editTextEmail; // edit text for email
+    EditText editTextPassword; // edit text for password
+    Button buttonLogin; // button for login
+    Button buttonForgotPassword; // button for forgot password
 
-    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance(); // firebase auth object for authentication purpose
+    Intent intent; // intent for changing activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,12 +39,14 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // finding id's of all UI components
         editTextEmail = findViewById(R.id.editTextLoginEmail);
         checkBoxShowPassword = findViewById(R.id.checkBoxLoginShowPassword);
         editTextPassword = findViewById(R.id.editTextLoginPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonForgotPassword = findViewById(R.id.buttonLoginForgotPassword);
 
+        // code for action-bar
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null)
         {
@@ -48,9 +54,15 @@ public class LoginActivity extends AppCompatActivity
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        // intent to get information from previous screen
+        intent = getIntent();
+        editTextEmail.setText(intent.getStringExtra("email"));
+        editTextPassword.setText(intent.getStringExtra("password"));
+
         // To show and hide the password
         int type = editTextPassword.getInputType(); // default password type;
 
+        // code for hiding and showing the password
         checkBoxShowPassword.setOnClickListener(v ->
         {
             if(checkBoxShowPassword.isChecked())
@@ -68,6 +80,7 @@ public class LoginActivity extends AppCompatActivity
         {
             String userEmail = editTextEmail.getText().toString();
             String userPassword = editTextPassword.getText().toString();
+
             // checks username and password of user to login
             if(userEmail.equals("") || userPassword.equals(""))
             {
@@ -75,6 +88,7 @@ public class LoginActivity extends AppCompatActivity
                 return;
             }
 
+            // method to login
             login(userEmail,userPassword);
         });
 
@@ -83,18 +97,21 @@ public class LoginActivity extends AppCompatActivity
         {
             String userEmail = editTextEmail.getText().toString();
 
+            // testcase
             if(userEmail.equals(""))
             {
                 Toast.makeText(LoginActivity.this, "Enter Email", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // testcase
             if(!userEmail.contains("@gmail.com"))
             {
                 Toast.makeText(LoginActivity.this,"Enter valid Email id",Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // actual code for sending forgot password email
             auth.sendPasswordResetEmail(userEmail)
                     .addOnCompleteListener(new OnCompleteListener<Void>()
                     {
@@ -103,6 +120,7 @@ public class LoginActivity extends AppCompatActivity
                         {
                             if(task.isSuccessful())
                             {
+                                // if email is sent following toast will be shown
                                 Toast.makeText(LoginActivity.this, "Sent an e-mail to reset password", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -110,7 +128,7 @@ public class LoginActivity extends AppCompatActivity
         });
     }
 
-    // code for login
+    // method for login (code available in firebase documentation)
     public void login(String email, String password)
     {
         auth.signInWithEmailAndPassword(email, password)
@@ -121,15 +139,19 @@ public class LoginActivity extends AppCompatActivity
                     {
                         if (task.isSuccessful())
                         {
+                            // toast for successful login
                             Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
+
                             //change the activity from loginActivity to HomeActivity
                             Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                             startActivity(intent);
                             finish();
 
-                        } else
+                        }
+                        else
                         {
-                            Toast.makeText(LoginActivity.this,"Login unsuccessful",Toast.LENGTH_SHORT).show();
+                            // toast for unsuccessful login
+                            Toast.makeText(LoginActivity.this,"Invalid Username or Password",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

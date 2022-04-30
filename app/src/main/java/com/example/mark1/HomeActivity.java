@@ -8,13 +8,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity
 {
-
     Button logout;
+    TextView text;
+
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user = auth.getCurrentUser();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,7 +28,12 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
         logout = findViewById(R.id.logoutButton);
+        text = findViewById(R.id.text);
+
+        text.setText(email);
 
         logout.setOnClickListener(v ->
         {
@@ -32,6 +43,8 @@ public class HomeActivity extends AppCompatActivity
         });
     }
 
+
+    // code for back button pressed which pops up a dialog box
     @Override
     public void onBackPressed() // function for back press
     {
@@ -51,7 +64,8 @@ public class HomeActivity extends AppCompatActivity
                         System.exit(1);
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener()
+                {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
