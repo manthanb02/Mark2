@@ -12,14 +12,31 @@
         <entry key="..\:/Mark1/app/src/main/res/layout/fragment_first.xml" value="0.2234375" />
         <entry key="..\:/Project/Mark1/app/src/main/res/layout/activity_login.xml" value="0.22916666666666666" />
         <entry key="..\:/Project/Mark1/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/border.xml" value="0.1295" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.1295" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_apartment_24.xml" value="0.1295" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1295" />
         <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.222" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.1295" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_menu_book_24.xml" value="0.223" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.223" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.1295" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.223" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_baseline_update_24.xml" value="0.223" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/ic_round_person_24.xml" value="0.1295" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/profile_bottom_border.xml" value="0.1295" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/profile_icon.xml" value="0.234" />
+        <entry key="..\:/mark1/app/src/main/res/drawable/round_profile.xml" value="0.1295" />
         <entry key="..\:/mark1/app/src/main/res/layout/activity_home.xml" value="0.2234375" />
         <entry key="..\:/mark1/app/src/main/res/layout/activity_join_apartment.xml" value="0.22916666666666666" />
         <entry key="..\:/mark1/app/src/main/res/layout/activity_login.xml" value="0.22916666666666666" />
         <entry key="..\:/mark1/app/src/main/res/layout/activity_main.xml" value="0.22916666666666666" />
         <entry key="..\:/mark1/app/src/main/res/layout/activity_options.xml" value="0.22916666666666666" />
         <entry key="..\:/mark1/app/src/main/res/layout/activity_register_apartment.xml" value="0.2234375" />
+        <entry key="..\:/mark1/app/src/main/res/layout/fragment_maintenance_update.xml" value="0.2234375" />
+        <entry key="..\:/mark1/app/src/main/res/layout/fragment_profile.xml" value="0.2234375" />
         <entry key="..\:/mark1/app/src/main/res/layout/login_toast.xml" value="0.2234375" />
+        <entry key="..\:/mark1/app/src/main/res/menu/admin_nav_bar_menu.xml" value="0.2234375" />
       </map>
     </option>
   </component>

@@ -1,15 +1,22 @@
 package com.example.mark1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -20,7 +27,10 @@ public class HomeActivity extends AppCompatActivity
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
+    BottomNavigationView bottomNavigationView;
 
+    ProfileFragment profileFragment = new ProfileFragment();
+    maintenanceUpdateFragment maintenanceUpdateFragment = new maintenanceUpdateFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,19 +38,71 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+//        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+//
+//        logout = findViewById(R.id.logoutButton);
+//        text = findViewById(R.id.text);
+//
+//        text.setText(email);
+//
+//        logout.setOnClickListener(v ->
+//        {
+//            FirebaseAuth.getInstance().signOut();
+//            startActivity(new Intent(HomeActivity.this,OptionsActivity.class));
+//            finish();
+//        });
 
-        logout = findViewById(R.id.logoutButton);
-        text = findViewById(R.id.text);
+        // Bottom navigation bar code
+        bottomNavigationView = findViewById(R.id.bottom_navigationBar);
 
-        text.setText(email);
+        // default selected item from menu
+        bottomNavigationView.setSelectedItemId(R.id.adminProfile);
+        changeFragment(profileFragment,true);
 
-        logout.setOnClickListener(v ->
+        // method to change the fragment based on the menu item selected
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener()
         {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(HomeActivity.this,OptionsActivity.class));
-            finish();
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item)
+            {
+
+                switch (item.getItemId()){
+
+                    case R.id.adminProfile:
+                        changeFragment(profileFragment,false);
+                        return true;
+
+                    case R.id.updateMaintenance:
+                        changeFragment(maintenanceUpdateFragment,false);
+                        return true;
+
+                    case R.id.adminPayment:
+                        changeFragment(profileFragment,false);
+                        return true;
+
+                    case R.id.adminMaintenanceDetails:
+                        changeFragment(maintenanceUpdateFragment,false);
+                        return true;
+
+                }
+                return false;
+            }
         });
+
+    }
+
+    // method to change the Fragment
+    void changeFragment(Fragment fragment, boolean flag)
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        if(flag)
+            ft.add(R.id.frameLayout,fragment);
+        else
+            ft.replace(R.id.frameLayout,fragment);
+
+        ft.commit();
     }
 
 

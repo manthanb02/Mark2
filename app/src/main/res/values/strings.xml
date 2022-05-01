@@ -17,5 +17,15 @@
     <string name="yourInfo">Your Information</string>
     <string name="apartmentInfo">Apartment Information</string>
     <string name="registerApartmentName">Enter Apartment Name</string>
-    <string name = "next">Next</string>
+    <string name="next">Next</string>
+
+    <string name="profile">Profile</string>
+    <string name="MaintenanceDetails">Records</string>
+    <string name="payment">Payment</string>
+    <string name="updateMaintenance">Update</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="updateMaintenanceFragment">Update Maintenance</string>
+    <string name="myProfile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>
