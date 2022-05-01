@@ -72,6 +72,8 @@ public class ProfileFragment extends Fragment
         }
     }
 
+    TextView apartmentName;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
@@ -82,7 +84,7 @@ public class ProfileFragment extends Fragment
         TextView email = view.findViewById(R.id.textViewProfileEmail);
         TextView name = view.findViewById(R.id.textViewProfileName);
         TextView phoneNo = view.findViewById(R.id.textViewProfilePhoneNo);
-        TextView apartmentName = view.findViewById(R.id.textViewProfileApartmentName);
+        apartmentName = view.findViewById(R.id.textViewProfileApartmentName);
         TextView status = view.findViewById(R.id.textViewProfileStatus);
         Button logout = view.findViewById(R.id.buttonProfileLogout);
 
@@ -103,7 +105,7 @@ public class ProfileFragment extends Fragment
                     name.setText(user.getName());
                     phoneNo.setText(user.getPhoneNo());
                     status.setText(user.getStatus());
-                    apartmentName.setText(user.getAptCode());
+                    getApartmentName(reference,user.getAptCode());
                 }
                 else
                 {
@@ -127,5 +129,26 @@ public class ProfileFragment extends Fragment
         });
 
         return view;
+    }
+
+    public void getApartmentName(DatabaseReference reference,String aptCode)
+    {
+        reference.child("apartments").child(aptCode).child("name").addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                if(snapshot.exists())
+                {
+                    apartmentName.setText((String)snapshot.getValue());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
     }
 }
