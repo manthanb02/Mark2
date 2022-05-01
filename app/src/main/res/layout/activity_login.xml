@@ -13,33 +13,78 @@
         android:orientation="vertical"
         android:layout_centerInParent="true">
 
-        <EditText
-            android:id="@+id/editTextLoginEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enterEmail"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:padding="15dp"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/border"
-            android:importantForAutofill="no"
-            />
 
-        <EditText
-            android:id="@+id/editTextLoginPassword"
+<!--        <EditText-->
+<!--            android:id="@+id/editTextLoginEmail"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/enterEmail"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:padding="15dp"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:importantForAutofill="no"-->
+<!--            />-->
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enterPassword"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:padding="15dp"
-            android:inputType="textPassword"
-            android:background="@drawable/border"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="22dp"
+            android:hint="@string/enterEmail"
+            android:inputType="textEmailAddress"
             android:importantForAutofill="no"
-            />
+            >
+
+            <!--this is the actual edit text which takes the input-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextLoginEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <EditText-->
+<!--            android:id="@+id/editTextLoginPassword"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/enterPassword"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:padding="15dp"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:importantForAutofill="no"-->
+<!--            />-->
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="22dp"
+            android:hint="@string/enterPassword"
+            android:inputType="textPassword"
+            android:importantForAutofill="no"
+            >
+
+            <!--this is the actual edit text which takes the input-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextLoginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/checkBoxLoginShowPassword"

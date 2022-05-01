@@ -26,59 +26,151 @@
                 >
             </TextView>
 
-            <EditText
-                android:id="@+id/editTextRegisterName"
+            <!--this is the outlined layout box for the edit text-->
+            <!--this layout must be used to reposition or change the
+                height and width of the edit text-->
+            <!--to get the outlined edit text the style attribute as
+                following must be invoked-->
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="22dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/border"
+                android:layout_marginEnd="22dp"
                 android:hint="@string/enterName"
-                android:importantForAutofill="no"
                 android:inputType="text"
-                android:padding="15dp" />
+                android:importantForAutofill="no"
+                >
 
-            <EditText
-                android:id="@+id/editTextRegisterPhoneNo"
+                <!--this is the actual edit text which takes the input-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextRegisterName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextRegisterName"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:hint="@string/enterName"-->
+<!--                android:importantForAutofill="no"-->
+<!--                android:inputType="text"-->
+<!--                android:padding="15dp" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="22dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/border"
+                android:layout_marginEnd="22dp"
                 android:hint="@string/enterPhoneNo"
-                android:importantForAutofill="no"
                 android:inputType="phone"
-                android:padding="15dp" />
+                android:importantForAutofill="no"
+                >
 
-            <EditText
-                android:id="@+id/editTextRegisterEmail"
+                <!--this is the actual edit text which takes the input-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextRegisterPhoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextRegisterPhoneNo"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:hint="@string/enterPhoneNo"-->
+<!--                android:importantForAutofill="no"-->
+<!--                android:inputType="phone"-->
+<!--                android:padding="15dp" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="22dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/border"
+                android:layout_marginEnd="22dp"
                 android:hint="@string/enterEmail"
-                android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:padding="15dp" />
+                android:importantForAutofill="no"
+                >
 
+                <!--this is the actual edit text which takes the input-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextRegisterEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/editTextRegisterPassword"
+<!--            <EditText-->
+<!--                android:id="@+id/editTextRegisterEmail"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:hint="@string/enterEmail"-->
+<!--                android:importantForAutofill="no"-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                android:padding="15dp" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="22dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/border"
+                android:layout_marginEnd="22dp"
                 android:hint="@string/createPassword"
+                android:inputType="textEmailAddress"
                 android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:padding="15dp" />
+                >
+
+                <!--this is the actual edit text which takes the input-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextRegisterPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextRegisterPassword"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:hint="@string/createPassword"-->
+<!--                android:importantForAutofill="no"-->
+<!--                android:inputType="textPassword"-->
+<!--                android:padding="15dp" />-->
 
             <TextView
                 android:layout_width="match_parent"
@@ -93,18 +185,41 @@
                 >
             </TextView>
 
-            <EditText
-                android:id="@+id/editTextRegisterApartmentName"
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/border"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="22dp"
                 android:hint="@string/registerApartmentName"
+                android:inputType="textEmailAddress"
                 android:importantForAutofill="no"
-                android:inputType="text"
-                android:padding="15dp" />
+                >
+
+                <!--this is the actual edit text which takes the input-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextRegisterApartmentName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextRegisterApartmentName"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:hint="@string/registerApartmentName"-->
+<!--                android:importantForAutofill="no"-->
+<!--                android:inputType="text"-->
+<!--                android:padding="15dp" />-->
 
             <Button
                 android:id="@+id/buttonRegisterNext"
