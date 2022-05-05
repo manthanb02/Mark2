@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,9 @@ public class RegisterApartment extends AppCompatActivity
 
     // stores unique apartment code
     String aptCode;
+
+    //for progressDialog
+    ProgressDialog registerProgressDialog;
 
     // Firebase related fields
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -101,6 +105,12 @@ public class RegisterApartment extends AppCompatActivity
             // method for registering user
             registerAdmin(userName,userPhoneNo,userEmail,userPassword,userApartmentName);
 
+            //------------------for progressDialog-------------------
+            registerProgressDialog = new ProgressDialog(RegisterApartment.this);
+            registerProgressDialog.setTitle("Register Apartment");
+            registerProgressDialog.setMessage("registering apartment..");
+            registerProgressDialog.show();
+
         });
 
 
@@ -137,7 +147,10 @@ public class RegisterApartment extends AppCompatActivity
                             reference.child("users").child(email.substring(0,email.length() - 4)).setValue(user);
                             reference.child("apartments").child(aptCode).setValue(apartment);
 
+                            //------------------to dismiss the progress Dialog-------------
+                            registerProgressDialog.dismiss();
 
+                            // toast for unsuccessful registration
                             Toast.makeText(RegisterApartment.this,"Data Saved Successfully and ",Toast.LENGTH_SHORT).show();
 
                             // this will take user to login screen
@@ -149,6 +162,9 @@ public class RegisterApartment extends AppCompatActivity
                         }
                         else
                         {
+                            //to dismiss the progress Dialog
+                            registerProgressDialog.dismiss();
+
                             // toast for unsuccessful registration
                             Toast.makeText(RegisterApartment.this, "Registration unsuccessful", Toast.LENGTH_SHORT).show();
                         }

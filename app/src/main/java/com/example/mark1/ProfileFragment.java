@@ -1,5 +1,6 @@
 package com.example.mark1;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -93,22 +94,39 @@ public class ProfileFragment extends Fragment
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference();
 
+        //------------------------ for progressDialog----------------------
+        final ProgressDialog profileProgressDialog;
+        profileProgressDialog = new ProgressDialog(getActivity());
+        profileProgressDialog.setTitle("Fetching Data");
+        profileProgressDialog.setMessage("loading data from server...");
+        //fto show progressDialog
+        profileProgressDialog.show();
+
+
         reference.child("users").child(userEmail.substring(0,userEmail.length() - 4)).addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
+
                 if(snapshot.exists())
                 {
+
                     User user = snapshot.getValue(User.class);
                     email.setText(userEmail);
                     name.setText(user.getName());
                     phoneNo.setText(user.getPhoneNo());
                     status.setText(user.getStatus());
                     getApartmentName(reference,user.getAptCode());
+
+                    //to dismiss the progress Dialog
+                    profileProgressDialog.dismiss();
                 }
                 else
                 {
+                    //---------------------to dismiss the progress Dialog-------------
+                    profileProgressDialog.dismiss();
+
                     Toast.makeText(getActivity(),"Data does not exist",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -123,9 +141,19 @@ public class ProfileFragment extends Fragment
         logout.setOnClickListener(v->
         {
             FirebaseAuth.getInstance().signOut();
+
             Intent i = new Intent(getActivity(), OptionsActivity.class);
             startActivity(i);
             getActivity().finish();
+
+//            //----------------------for progressDialog of logout button----------------------------
+//            ProgressDialog logOutProgressDialog = new ProgressDialog(getActivity());
+//            logOutProgressDialog.setTitle("Log Out");
+//            logOutProgressDialog.setMessage("logging out..");
+//            logOutProgressDialog.show();
+//            //to dismiss the progress Dialog
+//            logOutProgressDialog.dismiss();
+
         });
 
         return view;

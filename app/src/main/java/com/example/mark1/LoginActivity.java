@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -32,6 +33,9 @@ public class LoginActivity extends AppCompatActivity
 
     FirebaseAuth auth = FirebaseAuth.getInstance(); // firebase auth object for authentication purpose
     Intent intent; // intent for changing activity
+
+    //for progressDialog
+    ProgressDialog LoginProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -90,6 +94,12 @@ public class LoginActivity extends AppCompatActivity
 
             // method to login
             login(userEmail,userPassword);
+
+            //---------------for progressDialog--------------
+            LoginProgressDialog = new ProgressDialog(LoginActivity.this);
+            LoginProgressDialog.setTitle("Login");
+            LoginProgressDialog.setMessage("logging in..");
+            LoginProgressDialog.show();
         });
 
         // code for forgot password
@@ -139,6 +149,9 @@ public class LoginActivity extends AppCompatActivity
                     {
                         if (task.isSuccessful())
                         {
+                            //------------to dismiss the progress Dialog-----------
+                            LoginProgressDialog.dismiss();
+
                             // toast for successful login
                             Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
 
@@ -150,6 +163,9 @@ public class LoginActivity extends AppCompatActivity
                         }
                         else
                         {
+                            //to dismiss the progress Dialog
+                            LoginProgressDialog.dismiss();
+
                             // toast for unsuccessful login
                             Toast.makeText(LoginActivity.this,"Invalid Username or Password",Toast.LENGTH_SHORT).show();
                         }

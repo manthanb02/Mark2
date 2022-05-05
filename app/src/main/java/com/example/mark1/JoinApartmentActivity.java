@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -36,6 +37,9 @@ public class JoinApartmentActivity extends AppCompatActivity
     // Fields related to real-time database of firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference = database.getReference();
+
+    //for progressDialog
+    ProgressDialog JoinProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -100,9 +104,18 @@ public class JoinApartmentActivity extends AppCompatActivity
                     {
                         // As apartment code is valid user will be added to to particular apartment
                         joinApartment(userName,userPhoneNo,userEmail,userPassword,userApartmentCode);
+
+                        //--------------------for progressDialog----------------
+                        JoinProgressDialog = new ProgressDialog(JoinApartmentActivity.this);
+                        JoinProgressDialog.setTitle("Join Apartment");
+                        JoinProgressDialog.setMessage("joining to apartment..");
+                        JoinProgressDialog.show();
                     }
                     else
                     {
+                        //-----------to dismiss the progress Dialog-----------
+                        JoinProgressDialog.dismiss();
+
                         Toast.makeText(JoinApartmentActivity.this, "Invalid Apartment Code", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -128,6 +141,9 @@ public class JoinApartmentActivity extends AppCompatActivity
                     {
                         if (task.isSuccessful())
                         {
+                            //-------------to dismiss the progress Dialog-------------
+                            JoinProgressDialog.dismiss();
+
                             Toast.makeText(JoinApartmentActivity.this, "Apartment code : " + aptCode, Toast.LENGTH_SHORT).show();
 
                             HashMap<String,Object> user = new HashMap<>();
